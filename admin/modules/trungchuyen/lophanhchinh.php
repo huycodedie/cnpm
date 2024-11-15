@@ -2,9 +2,12 @@
 $sql_danhsach = "SELECT *
                FROM qllophanhchinh c
                JOIN qlkhoa k ON c.makhoa = k.idkhoa
+              
                ORDER BY c.idlhc"; 
 $query_danhsach = mysqli_query($mysqli,$sql_danhsach);
 ?>
+
+
 <main id="main" class="main">
     <div class="pagetitle">
         <h3>Danh sách lớp hành chính</h3>
@@ -27,6 +30,7 @@ $query_danhsach = mysqli_query($mysqli,$sql_danhsach);
                                     <th class="col-0 text-center">Mã lớp</th>
                                     <th class="col-3 text-center">Tên lớp</th>                                  
                                     <th class="col-3 text-center">Tên khoa</th> 
+                                    
                                 </tr>
                             </thead>
                             <body>
@@ -39,10 +43,13 @@ $query_danhsach = mysqli_query($mysqli,$sql_danhsach);
                                     <th class="text-center" scope="row"><?php echo $i ?> </th>
                                     <td class="text-center"><?php echo $row['idlhc'] ?></td>
                                     <th class="text-center" scope="row"> <?php echo $row['tenlop'] ?> </th>  
-                                    <th class="text-center" scope="row"> <?php echo $row['tenkhoa'] ?> </th>    
+                                    <th class="text-center" scope="row"> <?php echo $row['tenkhoa'] ?> </th>
+                                    
+                        
                                     <td class="text-center">
-                                        <a href="index.php?action=sualhc&idlhc=<?php echo $row['idlhc'] ?>" class="btn btn-primary btn-sm" title="sua noi dung"><i class="bi bi-pencil"></i></a>
-                                        <a href="modules/trungchuyen/quanlydanhmuctruyen/lophanhchinh/xulylhc.php?idlhc=<?php echo $row['idlhc'] ?>" class="btn btn-danger btn-sm" title="xoa lớp hành chính"><i class="bi bi-trash"></i></a>
+                                        <a href="index.php?action=phutrach&idlhc=<?php echo $row['idlhc'] ?>" class="btn btn-success btn-sm" title="thêm người phụ trách"><i class="bi bi-person"></i></a>
+                                        <a href="index.php?action=sualhc&idlhc=<?php echo $row['idlhc'] ?>" class="btn btn-primary btn-sm" title="sửa nội dung"><i class="bi bi-pencil"></i></a>
+                                        <a href="modules/trungchuyen/quanlydanhmuctruyen/lophanhchinh/xulylhc.php?idlhc=<?php echo $row['idlhc'] ?>" class="btn btn-danger btn-sm" title="xóa lớp hành chính"><i class="bi bi-trash"></i></a>
                                     </td>
                                 </tr>
     

@@ -11,17 +11,24 @@ $sql_sualhp = "SELECT*FROM qllophocphan l
                      WHERE malhp='$_GET[malhp]'LIMIT 1 ";
 $query_sualhp = mysqli_query($mysqli,$sql_sualhp);
 ?>
+<?php
 
+$malhp = isset($_GET['malhp']) ? $_GET['malhp'] : '';
+?>
 <?php 
+$sql_joine = "SELECT * 
+FROM  qllophanhchinh             
+ORDER BY idlhc";
+$query_joine= mysqli_query($mysqli, $sql_joine); 
 $sql_joine2 = "SELECT * 
                FROM  usersv             
-               ORDER BY idsv ASC";
+               WHERE malhc='$_GET[malhc]'";
 $query_joine2= mysqli_query($mysqli, $sql_joine2); 
 ?>
 <main id="main" class="main">
     <form method="POST" action="modules/trungchuyen/quanlydanhmuctruyen/lophocphan/xulylhp.php?malhp=<?php echo $_GET['malhp'] ?>" enctype="multipart/form-data">
     <div class="row pb-2">
-        <h2>Sửa lớp học phần</h2>
+        <h2>Thêm sinh viên vào lớp học phần</h2>
     </div>
     <div class="row">
         <div class="col-12">
@@ -62,6 +69,26 @@ $query_joine2= mysqli_query($mysqli, $sql_joine2);
                         }
                         ?>
                         <div class="row mb-3">
+    <label class="col-sm-2 col-form-label">Lớp hành chính</label>
+    <div class="col-sm-10">
+        <select id="classSelection" class="form-control" placeholder="Nhập" name="idlhc">
+            <option>Chọn lớp hành chính</option>
+            <?php
+            while($row = mysqli_fetch_array($query_joine)){
+            ?>
+                <option value="<?php echo $row['idlhc'] ?>">
+                    <?php echo $row['idlhc'] . ' - ' . $row['tenlop']; ?>
+                </option>
+            <?php 
+            }
+            ?>
+        </select>
+    </div>
+</div>
+
+
+
+                        <div class="row mb-3">
                             <label class="col-sm-2 col-form-label">Lớp học phần</label>
                             <div class="col-sm-10">
 
@@ -98,4 +125,20 @@ $query_joine2= mysqli_query($mysqli, $sql_joine2);
     });
 });
 
+</script>
+<script>
+    $(document).ready(function() {
+        // Khởi tạo select2
+        $('#classSelection').select2();
+
+        // Khi chọn một lớp hành chính
+        $('#classSelection').change(function() {
+            var selectedClassId = $(this).val(); // Lấy id của lớp hành chính được chọn
+            var malhp = "<?php echo $malhp; ?>"; // Lấy malhp từ PHP
+            if (selectedClassId) {
+                // Chuyển hướng với URL mới chứa malhc
+                window.location.href = "index.php?action=themsvl&malhp=" + malhp + "&malhc=" + selectedClassId;
+            }
+        });
+    });
 </script>

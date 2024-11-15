@@ -16,14 +16,14 @@
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label">Tên tài khoản</label>
                         <div class="col-sm-10">
-                            <input asp-for="BookName" type="text" class="form-control" placeholder="Nhập" name="tengv">
+                            <input asp-for="BookName" type="text" class="form-control" placeholder="Nhập" name="tengv" required>
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label">email</label>
                         <div class="col-sm-10">
                        
-                            <input asp-for="BookName" type="text" class="form-control" placeholder="Nhập" name="email">
+                            <input asp-for="BookName" type="text" class="form-control" placeholder="Nhập" name="email" required>
                             <div class="error-message-email"></div>
                         </div>
                         

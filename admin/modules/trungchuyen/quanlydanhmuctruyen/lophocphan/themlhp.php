@@ -19,7 +19,7 @@ $query_danhsachgv = mysqli_query($mysqli,$sql_danhsachgv);
                             <div class="row mb-3">
                                 <label class="col-sm-2 col-form-label">Tên lớp học phần</label>
                                 <div class="col-sm-3">
-                                    <input asp-for="CreatedBy" type="text" placeholder="nhập tên" class="form-control"  name="tenlhp">
+                                    <input asp-for="CreatedBy" type="text" placeholder="nhập tên" class="form-control"  name="tenlhp" required>
                                 </div>
                             </div>
                             <div class="row mb-3">

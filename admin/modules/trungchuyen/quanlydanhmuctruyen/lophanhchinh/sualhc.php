@@ -1,5 +1,7 @@
 <?php 
-$sql_sualhc = "SELECT*FROM qllophanhchinh WHERE idlhc='$_GET[idlhc]'LIMIT 1 ";
+$sql_sualhc = "SELECT*FROM qllophanhchinh c
+                JOIN qlkhoa k ON k.idkhoa = c.makhoa
+                 WHERE idlhc='$_GET[idlhc]'LIMIT 1 ";
 $query_sualhc = mysqli_query($mysqli,$sql_sualhc);
 ?>
 
@@ -7,7 +9,7 @@ $query_sualhc = mysqli_query($mysqli,$sql_sualhc);
 
 <?php 
 $sql_joine = "SELECT * 
-               FROM qlkhoa 
+               FROM qlkhoa
                ORDER BY idkhoa ASC";
 $query_joine= mysqli_query($mysqli, $sql_joine); 
 
@@ -40,6 +42,8 @@ if (!$query_joine) {
                             <div class="col-sm-10">
 
                             <select asp-for="BookName" id="search" type="text" class="form-control" placeholder="Nhập" name="makhoa">
+                                  <option ><?php echo $dong ['makhoa']?> - <?php echo $dong ['tenkhoa']?></option>
+                                    
                                     <?php
                                     while($row = mysqli_fetch_array($query_joine)){
                                     ?>

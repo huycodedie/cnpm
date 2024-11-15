@@ -18,18 +18,18 @@ $query_danhsach = mysqli_query($mysqli,$sql_lhc);
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label">Tên tài khoản</label>
                         <div class="col-sm-10">
-                            <input asp-for="BookName" type="text" class="form-control" placeholder="Nhập" name="tensv">
+                            <input asp-for="BookName" type="text" class="form-control" placeholder="Nhập" name="tensv" required>
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label class="col-sm-2 col-form-label">email</label>
+                        <label class="col-sm-2 col-form-label">Email</label>
                         <div class="col-sm-10">
-                            <input asp-for="BookName" type="text" class="form-control" placeholder="Nhập" name="email">
+                            <input asp-for="BookName" type="text" class="form-control" placeholder="Nhập" name="email" required>
                             <div class="error-message-email" style="color: red;"  ></div>
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label class="col-sm-2 col-form-label">email</label>
+                        <label class="col-sm-2 col-form-label">Lớp hành chính</label>
                         <div class="col-sm-10">
                             <select asp-for="BookName" id="search" class="form-control" placeholder="Nhập" name="malhc" ><option >chọn lớp</option>
                                 <?php 

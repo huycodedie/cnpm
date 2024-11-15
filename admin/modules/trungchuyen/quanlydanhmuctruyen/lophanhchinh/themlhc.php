@@ -14,7 +14,7 @@ $query_danhsach = mysqli_query($mysqli,$sql_danhsach);
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label">Tên lớp hành chính</label>
                         <div class="col-sm-10">
-                            <input asp-for="CreatedBy" type="text" placeholder="nhập tên" class="form-control"  name="tenlop">
+                            <input asp-for="CreatedBy" type="text" placeholder="nhập tên lớp" class="form-control"  name="tenlop" required>
                         </div>
                     </div>
                     <div class="row mb-3">

@@ -95,9 +95,9 @@
   
 
   <li class="nav-item">
-    <a class="nav-link collapsed" href="pages-register.html">
+    <a class="nav-link collapsed" href="404.php">
       <i class="bi bi-card-list"></i>
-      <span>Register</span>
+      <span>404</span>
     </a>
   </li><!-- End Register Page Nav -->
 

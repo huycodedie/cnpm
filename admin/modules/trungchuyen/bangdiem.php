@@ -32,6 +32,7 @@ $query_danhsach = mysqli_query($mysqli,$sql_danhsach);
                                     <th class="col-1 text-center">Quá trình</th>
                                     <th class="col-1 text-center">Giữa Kỳ</th>
                                     <th class="col-1 text-center">Cuối Kỳ</th>
+                                    <th class="col-1 text-center">Thêm</th>
 
                                 </tr>
                             </thead>
@@ -51,6 +52,10 @@ $query_danhsach = mysqli_query($mysqli,$sql_danhsach);
                                     <th class="text-center" scope="row"> <?php echo $row['giuaky'] ?> </th>  
                                     <th class="text-center" scope="row"> <?php echo $row['cuoiky'] ?> </th>   
                                     
+                                    <td class="text-center">
+                                        <a href="index.php?action=themdiem&madiem=<?php echo $row['madiem'] ?>" class="btn btn-success btn-sm" title="thêm điểm cho sinh viên"><i class="bi bi-pencil"></i></a>
+                                        <a href="javascript:void(0);" onclick="confirmDeletion(<?php echo $row['madiem']; ?>);" class="btn btn-danger btn-sm" title=""><i class="bi bi-trash"></i></a>
+                                    </td>
                                 </tr>
     
                                 <?php
@@ -60,7 +65,7 @@ $query_danhsach = mysqli_query($mysqli,$sql_danhsach);
                         </table>
                         <?php else: ?> 
 
-<h1>Chưa có lớp học phần nào</h1>
+<h1>Chưa có học sinh nào trong lớp học phần</h1>
 
 <?php endif; ?> 
                     </div>
@@ -69,3 +74,11 @@ $query_danhsach = mysqli_query($mysqli,$sql_danhsach);
         </div>
     </section>
 </main>
+<script>
+    function confirmDeletion(madiem){
+        var result =confirm("Bạn chắc chắn muốn xóa sinh viên này khỏi lớp này");
+        if(result){
+            window.location.href = "modules/trungchuyen/quanlydanhmuctruyen/bangdiem/xulydiem.php?madiem=" + madiem;
+        }
+    }
+</script>

@@ -10,10 +10,6 @@ $sql_danhsach = "SELECT *
                 JOIN usergv g
                 ON g.idgv = l.magv
                 ORDER BY l.malhp ";
-
-
-
-
 $query_danhsach = mysqli_query($mysqli,$sql_danhsach);
 ?>
 <main id="main" class="main">

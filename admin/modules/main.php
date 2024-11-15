@@ -66,6 +66,8 @@
         //bảng điểm
     }else if($tam=='diem'){
         include("modules/trungchuyen/bangdiem.php");
+    }else if($tam=='themdiem'){
+        include("modules/trungchuyen/quanlydanhmuctruyen/bangdiem/themdiem.php");
         //lớp hành chính
     }else if($tam=='lhc'){
         include("modules/trungchuyen/lophanhchinh.php");  
@@ -73,6 +75,8 @@
         include("modules/trungchuyen/quanlydanhmuctruyen/lophanhchinh/themlhc.php");  
     }else if($tam=='sualhc'){
         include("modules/trungchuyen/quanlydanhmuctruyen/lophanhchinh/sualhc.php");  
+    }else if($tam=='phutrach'){
+        include("modules/trungchuyen/quanlydanhmuctruyen/lophanhchinh/gvqlop.php");  
     }else if($tam=='1'){
         
             // Xóa phiên đăng nhập
@@ -94,7 +98,7 @@
     
     
     else{
-       // include("modules/trungchuyen/backround.php");  
+        include("modules/dashboard.php");  
     }
         
 ?>
