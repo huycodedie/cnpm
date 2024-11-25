@@ -17,7 +17,7 @@ $query_danhsach2 = mysqli_query($mysqli,$sql_danhsach);
         <h3>Danh sách lớp <?php echo $row['tenlhp'] ?></h3>
     </div>
     <p>                 
-        <a href="index.php?action=lop-hoc-phan&idgv=<?php echo $row['idgv'] ?>" type="button" class="btn btn-success">
+        <a href="index.php?action=lhp&idgv=<?php echo $row['idgv'] ?>" type="button" class="btn btn-success">
             <i class="bi bi-file-earmark-text me-1"></i>Trở lại
         </a>
     </p>

@@ -71,7 +71,7 @@ $query_sualhp = mysqli_query($mysqli,$sql_sualhp);
                                     <?php
                                     while($row = mysqli_fetch_array($query_joine2)){
                                     ?>
-                                        <option value="<?php echo $row['idsv'] ?>" ><?php echo $row['usernamesv']  ?></option>
+                                        <option ><?php echo $row['idsv'] ?> - <?php echo $row['usernamesv']  ?></option>
                                     <?php 
                                     }
                                     ?>

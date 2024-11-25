@@ -7,7 +7,7 @@ $sql_sualhp = "SELECT*FROM qllophocphan l
                      JOIN viewusergv_lhp v ON v.malhp = l.malhp
                      JOIN usergv g
                      ON g.idgv = v.magv
-                     WHERE l.malhp='$_GET[malhp]'LIMIT 1 ";
+                     WHERE malhp='$_GET[malhp]'LIMIT 1 ";
 $sql_joine2 = "SELECT * FROM  usersv             
                     ORDER BY idsv";
 $query_joine2= mysqli_query($mysqli, $sql_joine2); 
@@ -71,7 +71,7 @@ $query_sualhp = mysqli_query($mysqli,$sql_sualhp);
                                     <?php
                                     while($row = mysqli_fetch_array($query_joine2)){
                                     ?>
-                                        <option value="<?php echo $row['idsv'] ?>" ><?php echo $row['usernamesv']  ?></option>
+                                        <option ><?php echo $row['idsv'] ?> - <?php echo $row['usernamesv']  ?></option>
                                     <?php 
                                     }
                                     ?>
