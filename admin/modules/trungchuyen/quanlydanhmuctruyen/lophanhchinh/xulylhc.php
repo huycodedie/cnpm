@@ -14,6 +14,9 @@ if(isset($_POST['themlhc'])){
     $checklhcQuery = "SELECT * FROM viewusergv_khoa WHERE malhc = '$tenlhc'";
     $result = mysqli_query($mysqli, $checklhcQuery);
     if(mysqli_num_rows($result) > 0){
+        $sql_sua = "UPDATE viewusergv_khoa SET magv='".$giaovien."'
+        WHERE malhc = '$_GET[idlhc]' ";
+        mysqli_query($mysqli,$sql_sua);
         header('location:../../../../index.php?action=lhc');
     }
     else{

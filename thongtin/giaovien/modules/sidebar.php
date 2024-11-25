@@ -1,53 +1,46 @@
-
 <?php
-$sql_danhsach = "SELECT*FROM usergv        
-ORDER BY idgv";
-$query_danhsach = mysqli_query($mysqli,$sql_danhsach);
+    $user_id = mysqli_real_escape_string($mysqli, $_SESSION['user_id']); 
+
+    $sql_danhsach = "SELECT * FROM usergv WHERE idgv = '$user_id'";
+    $query_danhsach = mysqli_query($mysqli, $sql_danhsach);
 
 ?>
 <aside id="sidebar" class="sidebar">
 
 <ul class="sidebar-nav" id="sidebar-nav">
-
+<?php 
+   while($row = mysqli_fetch_array($query_danhsach)){
+    ?>
 <li class="nav-item">
-    <a class="nav-link collapsed" href="index.php?action=khoa">
+    <a class="nav-link collapsed" href="index.php?action=ho-so-giao-vien&idgv=<?php echo $row['idgv'] ?>">
       <i class="bi bi-card-list"></i>
-      <span>Hồ sơ giảng viên</span>
+          <span>Hồ sơ giảng viên</span>
     </a>
   </li>
-  <?php 
-                                $i = 0;
-                                while($row = mysqli_fetch_array($query_danhsach)){
-                                    $i++;
-                                ?>
+  
   <li class="nav-item">
     <a class="nav-link collapsed" href="index.php?action=khoa&idgv=<?php echo $row['idgv'] ?>">
       <i class="bi bi-card-list"></i>
       <span>Quản lý sinh viên</span>
     </a>
   </li>
-  <?php }?>
+  
   <li class="nav-item">
-    <a class="nav-link collapsed" href="index.php?action=khoa">
+    <a class="nav-link collapsed" href="index.php?action=lop-hoc-phan&idgv=<?php echo $row['idgv'] ?>">
       <i class="bi bi-card-list"></i>
-      <span>Khoa</span>
+      <span>Danh sách lớp</span>
     </a>
   </li>
-  <li class="nav-item">
-    <a class="nav-link collapsed" href="index.php?action=kho">
-      <i class="bi bi-card-list"></i>
-      <span>Register</span>
-    </a>
-  </li><!-- End Register Page Nav -->
+  <?php }?>
+  <!-- End Register Page Nav -->
 
   <li class="nav-item">
     <a class="nav-link collapsed" href="index.php?action=1">
       <i class="bi bi-box-arrow-in-right"></i>
-      <span>Sign Out</span>
+      <span>Đăng xuất</span>
     </a>
   </li><!-- End Login Page Nav -->
 
-  </li><!-- End Blank Page Nav -->
 
   <script>
   document.addEventListener('DOMContentLoaded', function() {

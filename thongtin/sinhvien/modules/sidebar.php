@@ -1,31 +1,39 @@
- <!-- ======= Sidebar ======= -->
  <?php 
-// Giả sử bạn đã kết nối vào cơ sở dữ liệu và có biến $mysqli là đối tượng kết nối
-$main_menu_query = "SELECT * FROM menusv WHERE parent_id = 1 ORDER BY thutu"; 
-$main_menu_result = $mysqli->query($main_menu_query); 
-?>
+ $usersv = mysqli_real_escape_string($mysqli, $_SESSION['usersv']); 
+
+ $sql_danhsach = "SELECT * FROM usersv WHERE idsv = '$usersv'";
+ $query_danhsach = mysqli_query($mysqli, $sql_danhsach);
+ ?>
 
 <aside id="sidebar" class="sidebar">
 
 <ul class="sidebar-nav" id="sidebar-nav">
-
-
-
-  <li class="nav-item">
-    <a class="nav-link collapsed" href="pages-register.html">
+  <?php $row = mysqli_fetch_array($query_danhsach);
+  if($row){ ?>
+<li class="nav-item">
+    <a class="nav-link collapsed" href="index.php?action=thong-tin-sinh-vien&idsv=<?php echo $row['idsv'] ?>">
       <i class="bi bi-card-list"></i>
-      <span>Register</span>
+      <span>Thông tin sinh viên</span>
     </a>
-  </li><!-- End Register Page Nav -->
+  </li>
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="index.php?action=bang-diem&masv=<?php echo $row['idsv'] ?>">
+      <i class="bi bi-card-list"></i>
+      <span>Môn học</span>
+    </a>
+  </li>
+
+<?php } ?>
+
 
   <li class="nav-item">
     <a class="nav-link collapsed" href="index.php?action=1">
       <i class="bi bi-box-arrow-in-right"></i>
-      <span>Sign Out</span>
+      <span>Đăng xuất</span>
     </a>
   </li><!-- End Login Page Nav -->
 
-  </li><!-- End Blank Page Nav -->
+
 
   <script>
   document.addEventListener('DOMContentLoaded', function() {

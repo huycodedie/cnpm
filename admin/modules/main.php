@@ -40,8 +40,8 @@
         include("modules/trungchuyen/quanlydanhmuctruyen/tkgv/themtkgv.php");  
     }else if($tam=='suatkgv'){
         include("modules/trungchuyen/quanlydanhmuctruyen/tkgv/suatkgv.php"); 
-    }else if($tam=='themtkgvsaiten'){
-        include("modules/trungchuyen/quanlydanhmuctruyen/tkgv/themtkgvsaiten.php");  
+    }else if($tam=='themnhieutkgv'){
+        include("modules/trungchuyen/quanlydanhmuctruyen/tkgv/themnhieutkgv.php");  
     }else if($tam=='themtkgvsaiemail'){
          include("modules/trungchuyen/quanlydanhmuctruyen/tkgv/themtkgvsaiemail.php");  
     }

@@ -2,7 +2,8 @@
 $sql_danhsach = "SELECT *
                FROM qllophanhchinh c
                JOIN qlkhoa k ON c.makhoa = k.idkhoa
-              
+               LEFT JOIN viewusergv_khoa v ON v.malhc = c.idlhc
+               LEFT JOIN usergv g ON g.idgv = v.magv
                ORDER BY c.idlhc"; 
 $query_danhsach = mysqli_query($mysqli,$sql_danhsach);
 ?>
@@ -28,7 +29,8 @@ $query_danhsach = mysqli_query($mysqli,$sql_danhsach);
                                 <tr>
                                     <th class="col-0 text-center">STT</th>
                                     <th class="col-0 text-center">Mã lớp</th>
-                                    <th class="col-3 text-center">Tên lớp</th>                                  
+                                    <th class="col-3 text-center">Tên lớp</th> 
+                                    <th class="col-2 text-center">Tên giáo viên</th>                                 
                                     <th class="col-3 text-center">Tên khoa</th> 
                                     
                                 </tr>
@@ -43,6 +45,7 @@ $query_danhsach = mysqli_query($mysqli,$sql_danhsach);
                                     <th class="text-center" scope="row"><?php echo $i ?> </th>
                                     <td class="text-center"><?php echo $row['idlhc'] ?></td>
                                     <th class="text-center" scope="row"> <?php echo $row['tenlop'] ?> </th>  
+                                    <th class="text-center" scope="row"> <?php echo $row['username'] ?> </th>  
                                     <th class="text-center" scope="row"> <?php echo $row['tenkhoa'] ?> </th>
                                     
                         

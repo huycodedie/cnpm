@@ -1,20 +1,33 @@
 <?php 
-    session_start();
-    include('config/config.php');
-    if(isset($_POST['dangnhap'])){
-        $taikhoan = $_POST['tentk'];
-        $matkhau = md5($_POST['matkhau']);
-        $sql = "SELECT * FROM usergv WHERE username = '".$taikhoan."' AND password='".$matkhau."' LIMIT 1 ";
-         $row=mysqli_query($mysqli,$sql);
-         $count = mysqli_num_rows($row);
-         if($count>0){
-            $_SESSION['dangnhap'] = $taikhoan;
-            header("Location:index.php");
-         }else{
-            echo '<p style="color:green"> sai</p>';
-            header("Location:login.php");
-         }
-    }
+  session_start();
+  include('config/config.php');
+  
+  if(isset($_POST['dangnhap'])){
+      $taikhoan = $_POST['tentk'];
+      $matkhau = $_POST['matkhau'];
+      $email = $_POST['email'];
+  
+      // Prepared Statement để tránh SQL Injection
+      $stmt = $mysqli->prepare("SELECT * FROM usergv WHERE email = ? LIMIT 1");
+      $stmt->bind_param("s", $email);
+      $stmt->execute();
+      $result = $stmt->get_result();
+  
+      if ($result->num_rows > 0) {
+          $user = $result->fetch_assoc();
+          if (md5($matkhau, $user['password'])) {
+              $_SESSION['user_id'] = $user['idgv'];
+              $_SESSION['dangnhap'] = $user['username'];
+              header("Location:index.php");
+              exit();
+          } else {
+              echo '<p style="color:red">Sai mật khẩu!</p>';
+          }
+      } else {
+          echo '<p style="color:red">Sai tài khoản!</p>';
+      }
+  }
+  
 ?>
 <!DOCTYPE html>
 <html>
@@ -55,7 +68,7 @@
         <br>
         <form action="" method="POST" autocomplete="off">
             <label for="username">Username</label>
-            <input type="text" id="username" name="tentk" placeholder="Username" required>
+            <input type="text" id="username" name="email" placeholder="Email" required>
 
             <label for="password">Password</label>
             <input type="password" id="password" name="matkhau" placeholder="Password" required>

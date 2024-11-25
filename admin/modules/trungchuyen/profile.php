@@ -1,20 +1,15 @@
-<!-- giáo viên -->
+
 <?php 
 $sql_danhsach = "SELECT*FROM usergv ORDER BY idgv";
 $query_danhsach = mysqli_query($mysqli,$sql_danhsach);
-?>
 
-<!-- sinh viên -->
-<?php 
 $sql_danh = "SELECT*FROM usersv s
                 JOIN qllophanhchinh c
                 ON s.malhc = c.idlhc
+                JOIN qlkhoa k ON k.idkhoa = c.makhoa
                 ORDER BY idsv";
 $query_danh = mysqli_query($mysqli,$sql_danh);
 ?>
-
-
-
 
 <!-- giáo viên -->
 <main id="main" class="main">
@@ -24,6 +19,10 @@ $query_danh = mysqli_query($mysqli,$sql_danh);
     <p>
     <a href="index.php?action=themtkgv" type="button" class="btn btn-success">
             <i class="bi bi-file-earmark-text me-1"></i>Thêm giáo viên
+        </a>
+    
+    <a href="index.php?action=themnhieutkgv" type="button" class="btn btn-success">
+            <i class="bi bi-file-earmark-text me-1"></i>Thêm nhiều giáo viên
         </a>
     </p>
     <section class="section dashboard">
@@ -102,6 +101,7 @@ $query_danh = mysqli_query($mysqli,$sql_danh);
                                     <th class="col-2 text-center">Tên </th>
                                     <th class="col-1 text-center">Email</th>
                                     <th class="col-2 text-center">Lớp hành chính</th>
+                                    <th class="col-2 text-center">khoa</th>
                                     <th class="col-5 text-center">Ngày tạo</th>                                  
                                     
                                 </tr>
@@ -117,7 +117,7 @@ $query_danh = mysqli_query($mysqli,$sql_danh);
                                     <td class="text-center"><?php echo $row['usernamesv'] ?></td>
                                     <th class="text-center" > <?php echo $row['email'] ?> </th>
                                     <td class="text-center" > <?php echo $row['tenlop'] ?> </td>
-                                    
+                                    <td class="text-center" > <?php echo $row['tenkhoa'] ?> </td>
                                     
                                                                     
                                     <td class="text-center" scope="row"><?php echo $row['created_at'] ?></td>

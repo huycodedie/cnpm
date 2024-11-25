@@ -1,15 +1,17 @@
 <?php 
-$sql_danhsach = "SELECT *
-                FROM qllophocphan l
-                JOIN qlhocphan p
-                ON l.mahp = p.mahp
-                JOIN qllophanhchinh c
-                ON p.malhc = c.idlhc
-                JOIN qlkhoa k
-                ON c.makhoa = k.idkhoa
-                JOIN usergv g
-                ON g.idgv = l.magv
-                ORDER BY l.malhp ";
+$sql_danhsach = "SELECT l.malhp AS malhp_lhp, l.*, p.*, k.*, v.*, g.*
+FROM qllophocphan l
+JOIN qlhocphan p
+ON l.mahp = p.mahp
+JOIN qlkhoa k 
+ON k.idkhoa = p.makhoa           
+LEFT JOIN viewusergv_lhp v 
+ON v.malhp = l.malhp
+LEFT JOIN usergv g
+ON g.idgv = v.magv
+ORDER BY l.malhp";
+
+
 $query_danhsach = mysqli_query($mysqli,$sql_danhsach);
 ?>
 <main id="main" class="main">
@@ -31,10 +33,10 @@ $query_danhsach = mysqli_query($mysqli,$sql_danhsach);
                             <thead>
                                 <tr>
                                     <th class="col-1 text-center">STT</th>
-                                    <th class="col-2 text-center">Mã lớp học phần</th>
+                                    <th class="col-1 text-center">Mã HP</th>
                                     <th class="col-2 text-center">Tên lớp học phần</th>
                                     <th class="col-2 text-center">Tên mã học phần</th>                                  
-                                    <th class="col-2 text-center">Tên giáo viên phụ trách</th>
+                                    <th class="col-2 text-center">Giáo viên phụ trách</th>
                                     <th class="col-2 text-center">Tên khoa</th>
 
                                 </tr>
@@ -53,10 +55,10 @@ $query_danhsach = mysqli_query($mysqli,$sql_danhsach);
                                     <th class="text-center" scope="row"> <?php echo $row['username'] ?> </th>  
                                     <th class="text-center" scope="row"> <?php echo $row['tenkhoa'] ?> </th>   
                                     <td class="text-center">
-                                        <a href="index.php?action=themsvl&malhp=<?php echo $row['malhp'] ?>" class="btn btn-success btn-sm" title="thêm sinh viên vào lớp"><i class="fa fa-plus"></i></a>
+                                        <a href="index.php?action=themsvl&malhp=<?php echo $row['malhp_lhp'] ?>" class="btn btn-success btn-sm" title="thêm sinh viên vào lớp"><i class="fa fa-plus"></i></a>
                                         
-                                        <a href="index.php?action=sualhp&malhp=<?php echo $row['malhp'] ?>" class="btn btn-primary btn-sm" title="sua noi dung"><i class="bi bi-pencil"></i></a>
-                                        <a href="modules/trungchuyen/quanlydanhmuctruyen/lophocphan/xulylhp.php?malhp=<?php echo $row['malhp'] ?>" class="btn btn-danger btn-sm" title="xoa lớp hành chính"><i class="bi bi-trash"></i></a>
+                                        <a href="index.php?action=sualhp&malhp=<?php echo $row['malhp_lhp'] ?>" class="btn btn-primary btn-sm" title="sua noi dung"><i class="bi bi-pencil"></i></a>
+                                        <a href="modules/trungchuyen/quanlydanhmuctruyen/lophocphan/xulylhp.php?malhp=<?php echo $row['malhp_lhp'] ?>" class="btn btn-danger btn-sm" title="xoa lớp hành chính"><i class="bi bi-trash"></i></a>
                                     </td>
                                 </tr>
     

@@ -21,7 +21,7 @@ $query_lhc2 = mysqli_query($mysqli, $sql_lhc2);
     <div class="pagetitle">
         <h2>Thêm giáo viên vào lớp hành chính</h2>
     </div>
-    <form asp-action="Create" method="POST" action="modules/trungchuyen/quanlydanhmuctruyen/lophanhchinh/xulylhc.php" onsubmit="return validateSelection()">           
+    <form asp-action="Create" method="POST" action="modules/trungchuyen/quanlydanhmuctruyen/lophanhchinh/xulylhc.php?idlhc=<?php echo $_GET['idlhc'] ?>" enctype="multipart/form-data" >           
         <div class="row">
             <div class="col-12">
                 <div class="card recend-sales overflow-auto">
@@ -31,14 +31,16 @@ $query_lhc2 = mysqli_query($mysqli, $sql_lhc2);
                         ?>    
                             <div class="row mb-3">
                                 <label class="col-sm-2 col-form-label">Khoa</label>
-                                <div class="col-sm-10">
-                                    <input asp-for="CreatedBy" type="text" value="<?php echo $row['makhoa'] ?> - <?php echo $row['tenkhoa'] ?>" class="form-control" name="makhoa" readonly>
+                                <div class="col-sm-10" >
+                                    <input asp-for="CreatedBy" type="text" value="<?php echo $row['tenkhoa'] ?>" class="form-control"  readonly>
+                                    <input style="display: none;" asp-for="CreatedBy" type="text" value="<?php $row['makhoa'] ?> " class="form-control" name="makhoa" readonly>
                                 </div>
                             </div>  
                             <div class="row mb-3">
                                 <label class="col-sm-2 col-form-label">Lớp hành chính</label>
                                 <div class="col-sm-10">
-                                    <input asp-for="CreatedBy" type="text" value="<?php echo $row['idlhc'] ?> - <?php echo $row['tenlop'] ?>" class="form-control" name="tenlop" readonly>
+                                    <input asp-for="CreatedBy" type="text" value=" <?php echo $row['tenlop'] ?>" class="form-control"  readonly>
+                                    <input style="display: none;" asp-for="CreatedBy" type="text" value="<?php echo $row['idlhc'] ?> " class="form-control" name="tenlop" readonly>
                                 </div>
                             </div>
                         <?php } ?>
@@ -50,9 +52,10 @@ $query_lhc2 = mysqli_query($mysqli, $sql_lhc2);
                                     
                                     <?php if ($query_lhc2->num_rows > 0): ?> 
                                         <?php 
-                                        while($row = mysqli_fetch_array($query_lhc2)){
+                                       $row = mysqli_fetch_array($query_lhc2);
+                                       if($row){
                                         ?>
-                                            <option value=""><?php echo $row['idgv'] ?> - <?php echo $row['username'] ?></option>
+                                            <option value="<?php echo $row['idgv'] ?>"><?php echo $row['username'] ?></option>
                                         <?php } ?>
                                     <?php else: ?>
                                         <option value="">Chọn giáo viên</option>
@@ -60,7 +63,7 @@ $query_lhc2 = mysqli_query($mysqli, $sql_lhc2);
                                     <?php 
                                     while($row = mysqli_fetch_array($query_danhsach)){
                                     ?>
-                                        <option value="<?php echo $row['idgv'] ?>"><?php echo $row['idgv'] ?> - <?php echo $row['username'] ?></option>
+                                        <option value="<?php echo $row['idgv'] ?>"><?php echo $row['username'] ?></option>
                                     <?php 
                                     } 
                                     ?>

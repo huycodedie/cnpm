@@ -2,34 +2,22 @@
 $sql_sualhp = "SELECT*FROM qllophocphan l
                      JOIN qlhocphan p
                      ON l.mahp = p.mahp
-                     JOIN qllophanhchinh c
-                     ON p.malhc = c.idlhc
                      JOIN qlkhoa k
-                     ON c.makhoa = k.idkhoa
+                     ON p.makhoa = k.idkhoa
                      JOIN usergv g
                      ON g.idgv = l.magv
                      WHERE malhp='$_GET[malhp]'LIMIT 1 ";
+$sql_joine2 = "SELECT * FROM  usersv             
+                    ORDER BY idsv";
+$query_joine2= mysqli_query($mysqli, $sql_joine2); 
 $query_sualhp = mysqli_query($mysqli,$sql_sualhp);
 ?>
-<?php
-
-$malhp = isset($_GET['malhp']) ? $_GET['malhp'] : '';
-?>
-<?php 
-$sql_joine = "SELECT * 
-FROM  qllophanhchinh             
-ORDER BY idlhc";
-$query_joine= mysqli_query($mysqli, $sql_joine); 
-$sql_joine2 = "SELECT * 
-               FROM  usersv             
-               WHERE malhc='$_GET[malhc]'";
-$query_joine2= mysqli_query($mysqli, $sql_joine2); 
-?>
 <main id="main" class="main">
-    <form method="POST" action="modules/trungchuyen/quanlydanhmuctruyen/lophocphan/xulylhp.php?malhp=<?php echo $_GET['malhp'] ?>" enctype="multipart/form-data">
-    <div class="row pb-2">
+
+    <div class="pagetitle">
         <h2>Thêm sinh viên vào lớp học phần</h2>
     </div>
+    <form method="POST" action="modules/trungchuyen/quanlydanhmuctruyen/lophocphan/xulylhp.php?malhp=<?php echo $_GET['malhp'] ?>" enctype="multipart/form-data">
     <div class="row">
         <div class="col-12">
             <div class="card recend-sales overflow-auto">
@@ -38,6 +26,11 @@ $query_joine2= mysqli_query($mysqli, $sql_joine2);
                         <?php 
                         while($dong = mysqli_fetch_array($query_sualhp)){
                         ?>
+                        <div class="row mb-3" style="display: none;">
+                            <div class="col-sm-10">
+                                <input asp-for="Name" value="<?php echo $dong['mahp'] ?>" type="text" name="mahp"  placeholder="Nhập"  >
+                            </div>
+                        </div>
                         <div class="row mb-3" >
                             <label class="col-sm-2 col-form-label">Tên lớp học phần</label>
                             <div class="col-sm-10">
@@ -68,26 +61,6 @@ $query_joine2= mysqli_query($mysqli, $sql_joine2);
                         <?php 
                         }
                         ?>
-                        <div class="row mb-3">
-    <label class="col-sm-2 col-form-label">Lớp hành chính</label>
-    <div class="col-sm-10">
-        <select id="classSelection" class="form-control" placeholder="Nhập" name="idlhc">
-            <option>Chọn lớp hành chính</option>
-            <?php
-            while($row = mysqli_fetch_array($query_joine)){
-            ?>
-                <option value="<?php echo $row['idlhc'] ?>">
-                    <?php echo $row['idlhc'] . ' - ' . $row['tenlop']; ?>
-                </option>
-            <?php 
-            }
-            ?>
-        </select>
-    </div>
-</div>
-
-
-
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label">Lớp học phần</label>
                             <div class="col-sm-10">

@@ -1,7 +1,8 @@
 <?php 
+$user_id = mysqli_real_escape_string($mysqli, $_SESSION['user_id']); 
 $sql_danhsach = "SELECT *
-               FROM users
-               WHERE id LIMIT 1"; 
+               FROM usergv
+               WHERE idgv='$user_id'"; 
 $query_danhsach = mysqli_query($mysqli,$sql_danhsach);
 ?>
 
@@ -10,8 +11,8 @@ $query_danhsach = mysqli_query($mysqli,$sql_danhsach);
 
     <div class="d-flex align-items-center justify-content-between">
       <a href="http://localhost/cnpm/thongtin/giaovien/" class="logo d-flex align-items-center">
-        <img src="assets/img/logo.png" alt="">
-        <span class="d-none d-lg-block">Giáo Viên</span>
+        <img src="https://congsv.vinhuni.edu.vn/sv/assets/images/eUniversity/logo_dhvinh.png" alt="">
+        <span class="d-none d-lg-block">Giảng Viên</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->

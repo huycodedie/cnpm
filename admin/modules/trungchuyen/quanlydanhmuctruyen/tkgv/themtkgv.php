@@ -22,7 +22,17 @@
                             <div class="error-message-email"></div>
                         </div>
                     </div>
-                   
+                    <?php
+
+if (isset($_SESSION['errors'])) {
+    echo '<div class="alert alert-danger">';
+    foreach ($_SESSION['errors'] as $error) {
+        echo '<p>' . htmlspecialchars($error) . '</p>';
+    }
+    echo '</div>';
+    unset($_SESSION['errors']); // Xóa lỗi sau khi hiển thị
+}
+?>
                     <div class="row mb-3">
                         
                         <div class="col-sm-12">
@@ -64,6 +74,5 @@
         });
     });
 </script>
-
 
 

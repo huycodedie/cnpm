@@ -42,12 +42,12 @@ if (!$query_joine) {
                             <div class="col-sm-10">
 
                             <select asp-for="BookName" id="search" type="text" class="form-control" placeholder="Nhập" name="makhoa">
-                                  <option ><?php echo $dong ['makhoa']?> - <?php echo $dong ['tenkhoa']?></option>
+                                  <option value="<?php echo $dong ['makhoa']?>" ><?php echo $dong ['tenkhoa']?></option>
                                     
                                     <?php
                                     while($row = mysqli_fetch_array($query_joine)){
                                     ?>
-                                        <option ><?php echo $row['idkhoa'] ?> - <?php echo $row['tenkhoa']  ?></option>
+                                        <option value="<?php echo $row['idkhoa'] ?>" ><?php echo $row['tenkhoa']  ?></option>
                                     <?php 
                                     }
                                     ?>

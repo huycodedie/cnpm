@@ -1,6 +1,12 @@
 <?php 
-$sql_sualhp = "SELECT*FROM qllophocphan WHERE malhp='$_GET[malhp]'LIMIT 1 ";
+$sql_sualhp = "SELECT*FROM qllophocphan a
+                    JOIN qlhocphan b ON a.mahp = b.mahp
+                    LEFT JOIN viewusergv_lhp v ON v.malhp = a.malhp
+                    LEFT JOIN usergv g ON g.idgv = v.magv
+                     WHERE a.malhp='$_GET[malhp]'LIMIT 1 ";
 $query_sualhp = mysqli_query($mysqli,$sql_sualhp);
+$query_sualhp2 = mysqli_query($mysqli,$sql_sualhp);
+$query_sualhp3 = mysqli_query($mysqli,$sql_sualhp);
 ?>
 
 <?php 
@@ -8,6 +14,11 @@ $sql_joine2 = "SELECT *
                FROM  qlhocphan              
                ORDER BY mahp ASC";
 $query_joine2= mysqli_query($mysqli, $sql_joine2); 
+
+$sql_joine = "SELECT * 
+               FROM  usergv             
+               ORDER BY idgv ASC";
+$query_joine= mysqli_query($mysqli, $sql_joine); 
 ?>
 <main id="main" class="main">
     <form method="POST" action="modules/trungchuyen/quanlydanhmuctruyen/lophocphan/xulylhp.php?malhp=<?php echo $_GET['malhp'] ?>" enctype="multipart/form-data">
@@ -36,11 +47,35 @@ $query_joine2= mysqli_query($mysqli, $sql_joine2);
                             <div class="col-sm-10">
 
                             <select asp-for="BookName" id="search" class="form-control" placeholder="Nhập" name="mahp">
+                                    <?php $row = mysqli_fetch_array($query_sualhp2); if($row){ ?>
 
-                                    <?php
+                                    <option value="<?php echo $row['mahp']?>"> <?php echo $row['tenhp']?><?php } ?></option>
+                                   
+                                   <?php
                                     while($row = mysqli_fetch_array($query_joine2)){
                                     ?>
-                                        <option ><?php echo $row['mahp'] ?> - <?php echo $row['tenhp']  ?></option>
+                                        <option value="<?php echo $row['mahp'] ?>"> <?php echo $row['tenhp']  ?></option>
+                                    <?php 
+                                    }
+                                    ?>
+                            </select>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label">Giáo viên</label>
+                            <div class="col-sm-10">
+
+                            <select asp-for="BookName" id="search1" class="form-control" placeholder="Nhập" name="magv">
+                                    <?php $row = mysqli_fetch_array($query_sualhp3); if($row) { ?>
+                                    
+                                        <option value="<?php echo $row['idgv'] ?>"><?php echo $row['username']?></option>
+                                    
+                                        <?php } ?>
+                                    
+                                    <?php
+                                    while($row = mysqli_fetch_array($query_joine)){
+                                    ?>
+                                        <option value="<?php echo $row['idgv'] ?>"><?php echo $row['username']  ?></option>
                                     <?php 
                                     }
                                     ?>
@@ -62,4 +97,10 @@ $query_joine2= mysqli_query($mysqli, $sql_joine2);
     });
 });
 
+</script>
+<script>
+    $(document).ready(function() {
+    $('#search1').select2({    
+    });
+});
 </script>

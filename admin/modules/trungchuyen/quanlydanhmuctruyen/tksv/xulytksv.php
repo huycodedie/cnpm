@@ -43,8 +43,12 @@ if(isset($_POST['themtksv'])){
     header('location:../../../../index.php?action=khoa');
 }else{
     $id=$_GET['idsv'];
+    $sql_xoa="DELETE FROM bangdiem WHERE masv ='".$id."'";
+    mysqli_query($mysqli,$sql_xoa);
+  
     $sql_xoa="DELETE FROM usersv WHERE idsv ='".$id."'";
     mysqli_query($mysqli,$sql_xoa);
+    
     header('location:../../../../index.php?action=profile');
 }
 ?>

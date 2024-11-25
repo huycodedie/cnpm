@@ -81,7 +81,7 @@
     </ul>
   </li>-->
 
-  <li class="nav-heading">Pages</li>
+  <li class="nav-heading">Trang</li>
 
   <li class="nav-item">
     <a class="nav-link collapsed" href="index.php?action=profile">
@@ -104,7 +104,7 @@
   <li class="nav-item">
     <a class="nav-link collapsed" href="index.php?action=1">
       <i class="bi bi-box-arrow-in-right"></i>
-      <span>Sign Out</span>
+      <span>Đăng xuất</span>
     </a>
   </li><!-- End Login Page Nav -->
 

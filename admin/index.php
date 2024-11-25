@@ -16,8 +16,8 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="https://congsv.vinhuni.edu.vn/sv/assets/images/eUniversity/logo_dhvinh.png" rel="icon">
+  <link href="https://congsv.vinhuni.edu.vn/sv/assets/images/eUniversity/logo_dhvinh.png" rel="apple-touch-icon">
   <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -42,7 +42,7 @@
   <link href="assets/css/style.css" rel="stylesheet">
   <style>
     body {
-        overflow: hidden;
+        
         margin: 0;
     }
     .notification-box {

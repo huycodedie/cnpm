@@ -1,8 +1,7 @@
 <?php 
-$sql_danhsach = "SELECT*FROM qllophanhchinh c
-                    JOIN qlkhoa k
-                    ON c.makhoa = k.idkhoa
-                    ORDER BY idlhc";
+$sql_danhsach = "SELECT*FROM qlkhoa 
+                  
+                    ORDER BY idkhoa";
 $query_danhsach = mysqli_query($mysqli,$sql_danhsach);
 ?>
 <main id="main" class="main">
@@ -22,17 +21,17 @@ $query_danhsach = mysqli_query($mysqli,$sql_danhsach);
                                 </div>
                             </div>
                             <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label">Lớp hành chính</label>
+                            <label class="col-sm-2 col-form-label">Khoa</label>
                                 <div class="col-sm-10">
 
-                                <select name="malhc" id="search" asp-for="CreatedBy" type="text" class="form-control" ><option >chọn lớp</option>
+                                <select name="makhoa" id="search" asp-for="CreatedBy" type="text" class="form-control" ><option >Chọn khoa</option>
                                 <?php 
                                 $i = 0;
                                 while($row = mysqli_fetch_array($query_danhsach)){
                                     $i++;
                                 ?>
 
-                                        <option  ><?php echo $row['idlhc'] ?> - <?php echo $row['tenlop']  ?> - <?php echo $row['tenkhoa']  ?></option>
+                                        <option value="<?php echo $row['idkhoa'] ?>" ><?php echo $row['tenkhoa']  ?></option>
                                 <?php 
                                 } 
                                 ?>

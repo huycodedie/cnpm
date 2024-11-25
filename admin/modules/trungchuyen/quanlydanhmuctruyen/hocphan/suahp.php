@@ -1,14 +1,13 @@
 <?php 
-$sql_sualhp = "SELECT*FROM qlhocphan WHERE mahp='$_GET[mahp]'LIMIT 1 ";
+$sql_sualhp = "SELECT*FROM qlhocphan p JOIN qlkhoa k ON k.idkhoa = p.makhoa WHERE mahp='$_GET[mahp]'LIMIT 1 ";
 $query_sualhp = mysqli_query($mysqli,$sql_sualhp);
+$query_sualhp1 = mysqli_query($mysqli,$sql_sualhp);
 ?>
 
 <?php 
 $sql_joine2 = "SELECT * 
-               FROM  qllophanhchinh c
-               JOIN qlkhoa k
-               ON k.idkhoa = c.makhoa             
-               ORDER BY idlhc ASC";
+               FROM qlkhoa 
+               ORDER BY idkhoa ASC";
 $query_joine2= mysqli_query($mysqli, $sql_joine2); 
 ?>
 <main id="main" class="main">
@@ -34,15 +33,18 @@ $query_joine2= mysqli_query($mysqli, $sql_joine2);
                         }
                         ?>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label">Lớp hành chính</label>
+                            <label class="col-sm-2 col-form-label">Khoa</label>
                             <div class="col-sm-10">
 
-                            <select asp-for="BookName" id="search" class="form-control" placeholder="Nhập" name="malhc">
-
+                            <select asp-for="BookName" id="search" class="form-control" placeholder="Nhập" name="makhoa">
+                                    <?php $row=mysqli_fetch_array($query_sualhp1);
+                                        if($row){ ?>
+                                    <option value="<?php echo $row['makhoa'] ?>"><?php echo $row['tenkhoa'] ?></option>
+                                            <?php } ?>
                                     <?php
                                     while($row = mysqli_fetch_array($query_joine2)){
                                     ?>
-                                        <option ><?php echo $row['idlhc'] ?> - <?php echo $row['tenlop']  ?> - <?php echo $row['tenkhoa']  ?></option>
+                                        <option value="<?php echo $row['idkhoa'] ?>" ><?php echo $row['tenkhoa']  ?></option>
                                     <?php 
                                     }
                                     ?>

@@ -59,11 +59,24 @@
 
             <label for="password">Password</label>
             <input type="password" id="password" name="matkhau" placeholder="Password" required>
-
+            <span class="toggle-password" onclick="togglePassword()">👁</span>
             <input type="submit" value="Login" name="dangnhap">
         </form>
         <p style="text-align: left; padding-left: 20px; width: 50%;">Forgot Password</p>
     </div>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        function togglePassword() {
+            const passwordInput = document.getElementById("password");
+            const toggleIcon = document.querySelector(".toggle-password");
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                toggleIcon.textContent = "👁️‍🗨️"; // Icon khi mật khẩu hiển thị
+            } else {
+                passwordInput.type = "password";
+                toggleIcon.textContent = "👁"; // Icon khi mật khẩu ẩn
+            }
+        }
+    </script>
 </body>
 </html>

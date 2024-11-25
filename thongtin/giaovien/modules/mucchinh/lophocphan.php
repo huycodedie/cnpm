@@ -1,46 +1,16 @@
 <?php 
-$sql_danhsach = "SELECT * FROM qllophocphan l
-                JOIN qlhocphan p
-                ON l.mahp = p.mahp
-                JOIN qllophanhchinh c
-                ON p.malhc = c.idlhc
-                JOIN qlkhoa k
-                ON c.makhoa = k.idkhoa
-                JOIN usergv g
-                ON g.idgv = l.magv
-                WHERE p.malhc='$_GET[idlhc]' "; 
+$sql_danhsach = "SELECT*FROM usergv g
+                JOIN viewusergv_lhp v ON v.magv = g.idgv
+                JOIN qllophocphan l ON l.malhp = v.malhp
+                JOIN qlhocphan p ON p.mahp = l.mahp
+                JOIN qlkhoa k ON k.idkhoa = p.makhoa   
+                WHERE g.idgv = '$_GET[idgv]' ORDER BY l.malhp";
 $query_danhsach = mysqli_query($mysqli,$sql_danhsach);
-?>
-<?php 
-$sql_danhsach2 = "SELECT * FROM qllophocphan l
-                JOIN qlhocphan p
-                ON l.mahp = p.mahp
-                JOIN qllophanhchinh c
-                ON p.malhc = c.idlhc
-                JOIN qlkhoa k
-                ON c.makhoa = k.idkhoa
-                JOIN usergv g
-                ON g.idgv = l.magv
-                WHERE p.malhc='$_GET[idlhc]'LIMIT 1 "; 
-
-$query_danhsach2 = mysqli_query($mysqli,$sql_danhsach2);
 ?>
 <main id="main" class="main">
     <div class="pagetitle">
-        <h3>Danh sách lớp học phần</h3>
+        <h3>Danh sach Khoa</h3>
     </div>
-    <p><?php 
-            $i = 0;
-            while($row = mysqli_fetch_array($query_danhsach2)){
-                $i++;
-        ?>
-            <a href="index.php?action=lhc&idkhoa=<?php echo $row['idkhoa'] ?>" type="button" class="btn btn-success">
-                <i class="bi bi-file-earmark-text me-1"></i>Trở lại
-            </a>
-        <?php
-         } 
-        ?>
-    </p>
     <section class="section dashboard">
         <div class="row">
             <div class="col-12">
@@ -50,12 +20,11 @@ $query_danhsach2 = mysqli_query($mysqli,$sql_danhsach2);
                         <table class="table table-broderless datatable">
                             <thead>
                                 <tr>
-                                    <th class="col-0 text-center">STT</th>
-                                    <th class="col-0 text-center">Mã lớp</th>
-                                    <th class="col-3 text-center">Tên lớp</th>                                  
-                                    <th class="col-3 text-center">Tên lớp hành chính</th>
-                                    <th class="col-3 text-center">Tên khoa</th>
-
+                                    <th class="col-1 text-center">Stt</th>
+                                    <th class="col-2 text-center">Khoa</th>
+                                    <th class="col-2 text-center">Tên học phần</th>
+                                    <th class="col-2 text-center">Tên lơp học phần</th>
+                                    
                                 </tr>
                             </thead>
                             <body>
@@ -66,13 +35,14 @@ $query_danhsach2 = mysqli_query($mysqli,$sql_danhsach2);
                                 ?>
                                 <tr>
                                     <th class="text-center" scope="row"><?php echo $i ?> </th>
-                                    <td class="text-center"><?php echo $row['mahp'] ?></td>
-                                    <th class="text-center" scope="row"> <?php echo $row['tenhp'] ?> </th>  
-                                    <th class="text-center" scope="row"> <?php echo $row['tenlop'] ?> </th>  
-                                    <th class="text-center" scope="row"> <?php echo $row['tenkhoa'] ?> </th>   
+                                    <td class="text-center"><?php echo $row['tenkhoa'] ?></td>
+                                    <td class="text-center"><?php echo $row['tenhp'] ?></td>
+                                    <td class="text-center"><?php echo $row['tenlhp'] ?></td>
+                                    
+
                                     <td class="text-center">
-                                       <!-- <a href="index.php?action=sualhp&mahp=<?php echo $row['mahp'] ?>" class="btn btn-primary btn-sm" title="sua noi dung"><i class="bi bi-file-earmark-text me-1"></i></a> -->
-                                     
+                                        <a href="index.php?action=sv-lop-hoc-phan&idgv=<?php echo $row['idgv'] ?>&malhp=<?php echo $row['malhp'] ?>" class="btn btn-primary btn-sm" title="noi dung"><i class="bi bi-file-earmark-text me-1"></i></a>
+                                        
                                     </td>
                                 </tr>
     
@@ -82,10 +52,9 @@ $query_danhsach2 = mysqli_query($mysqli,$sql_danhsach2);
                             </body>
                         </table>
                         <?php else: ?> 
-
-<h1>Chưa có lớp học phần nào</h1>
-
-<?php endif; ?> 
+          
+          <h2>Chưa có lớp nào</h2>
+      <?php endif; ?> 
                     </div>
                 </div>
             </div>

@@ -1,20 +1,32 @@
 <?php 
-    session_start();
-    include('config/config.php');
-    if(isset($_POST['dangnhap'])){
-        $taikhoan = $_POST['tentk'];
-        $matkhau = md5($_POST['matkhau']);
-        $sql = "SELECT * FROM usersv WHERE username = '".$taikhoan."' AND password='".$matkhau."' LIMIT 1 ";
-         $row=mysqli_query($mysqli,$sql);
-         $count = mysqli_num_rows($row);
-         if($count>0){
-            $_SESSION['dangnhap'] = $taikhoan;
-            header("Location:index.php");
-         }else{
-            echo '<p style="color:green"> sai</p>';
-            header("Location:login.php");
-         }
-    }
+  session_start();
+  include('config/config.php');
+  
+  if(isset($_POST['dangnhap'])){
+      $taikhoan = $_POST['tentk'];
+      $matkhau = $_POST['matkhau'];
+  
+      // Prepared Statement để tránh SQL Injection
+      $stmt = $mysqli->prepare("SELECT * FROM usersv WHERE usernamesv = ? LIMIT 1");
+      $stmt->bind_param("s", $taikhoan);
+      $stmt->execute();
+      $result = $stmt->get_result();
+  
+      if ($result->num_rows > 0) {
+          $user = $result->fetch_assoc();
+          if (md5($matkhau, $user['password'])) {
+              $_SESSION['usersv'] = $user['idsv'];
+              $_SESSION['dangnhap'] = $user['usernamesv'];
+              header("Location:index.php");
+              exit();
+          } else {
+              echo '<p style="color:red">Sai mật khẩu!</p>';
+          }
+      } else {
+          echo '<p style="color:red">Sai tài khoản!</p>';
+      }
+  }
+  
 ?>
 <!DOCTYPE html>
 <html>

@@ -3,19 +3,30 @@
         <h2>Thêm nhiều giáo viên</h2>
     </div>
     <!-- Begin Form -->
-    <form id="form-login" method="POST" action="">
+    <form id="form-login" method="POST" action="modules/trungchuyen/quanlydanhmuctruyen/tkgv/xulytkgv.php" enctype="multipart/form-data">
         <div class="row">
             <div class="col-12">
                 <div class="card recend-sales overflow-auto">
                     <div class="card-body mt-4">
                         <div class="row mb-3">
+                        <?php
+
+if (isset($_SESSION['errors'])) {
+    echo '<div class="alert alert-danger">';
+    foreach ($_SESSION['errors'] as $error) {
+        echo '<p>' . htmlspecialchars($error) . '</p>';
+    }
+    echo '</div>';
+    unset($_SESSION['errors']); // Xóa lỗi sau khi hiển thị
+}
+?>
                             <label class="col-sm-2 col-form-label">Danh sách giáo viên</label>
                             <div class="col-sm-10">
-                                <textarea id="teacher-input" class="form-control" name="teacher_data" rows="5" placeholder="Nhập dữ liệu, mỗi dòng theo định dạng: tên,email "required></textarea>
+                                <textarea id="teacher-input" class="form-control" name="teacher_data" rows="5" placeholder="Nhập dữ liệu, mỗi dòng theo định dạng: tên,email" required></textarea>
                                 <div class="error-message-teachers text-danger mt-2"></div>
                             </div>
                         </div>
-                        <button type="submit" name="themtkgv" class="btn btn-lg btn-primary p-2">
+                        <button type="submit" name="themntkgv" class="btn btn-lg btn-primary p-2">
                             <i class="bi bi-file-plus-fill"></i> Lưu
                         </button>
                         <a href="index.php?action=profile" asp-controller="Book" asp-action="Index" class="btn btn-lg btn-warning p-2">Quay lại</a>

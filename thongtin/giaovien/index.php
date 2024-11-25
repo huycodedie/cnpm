@@ -1,8 +1,9 @@
 <?php 
    session_start();
-   if(!isset($_SESSION['dangnhap'])){
+   if(!isset($_SESSION['user_id'])){
    header("Location:login.php");
   }
+  
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,8 +16,8 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="https://congsv.vinhuni.edu.vn/sv/assets/images/eUniversity/logo_dhvinh.png" rel="icon">
+  <link href="https://congsv.vinhuni.edu.vn/sv/assets/images/eUniversity/logo_dhvinh.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">

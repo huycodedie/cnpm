@@ -1,7 +1,6 @@
 <?php 
 $sql_danhsach = "SELECT *
-               FROM qllophanhchinh c
-               JOIN qlhocphan p ON p.malhc = c.idlhc JOIN qlkhoa k On k.idkhoa = c.makhoa
+               FROM qlhocphan p JOIN qlkhoa k On k.idkhoa = p.makhoa
                 ORDER BY p.mahp"; 
 $query_danhsach = mysqli_query($mysqli,$sql_danhsach);
 ?>
@@ -26,7 +25,7 @@ $query_danhsach = mysqli_query($mysqli,$sql_danhsach);
                                     <th class="col-0 text-center">STT</th>
                                     <th class="col-0 text-center">Mã học phần</th>
                                     <th class="col-3 text-center">Tên học phần</th>                                  
-                                    <th class="col-3 text-center">Tên lớp hành chính</th>
+                                
                                     <th class="col-3 text-center">Tên khoa</th>
 
                                 </tr>
@@ -41,7 +40,7 @@ $query_danhsach = mysqli_query($mysqli,$sql_danhsach);
                                     <th class="text-center" scope="row"><?php echo $i ?> </th>
                                     <td class="text-center"><?php echo $row['mahp'] ?></td>
                                     <th class="text-center" scope="row"> <?php echo $row['tenhp'] ?> </th>  
-                                    <th class="text-center" scope="row"> <?php echo $row['tenlop'] ?> </th>  
+                    
                                     <th class="text-center" scope="row"> <?php echo $row['tenkhoa'] ?> </th>   
                                     <td class="text-center">
                                         <a href="index.php?action=suahp&mahp=<?php echo $row['mahp'] ?>" class="btn btn-primary btn-sm" title="sua noi dung"><i class="bi bi-pencil"></i></a>

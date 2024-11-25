@@ -10,7 +10,7 @@ $query_danhsach = mysqli_query($mysqli,$sql_danhsach);
 
     <div class="d-flex align-items-center justify-content-between">
       <a href="http://localhost/cnpm/admin/" class="logo d-flex align-items-center">
-        <img src="assets/img/logo.png" alt="">
+        <img src="https://congsv.vinhuni.edu.vn/sv/assets/images/eUniversity/logo_dhvinh.png" alt="">
         <span class="d-none d-lg-block">Admin</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
